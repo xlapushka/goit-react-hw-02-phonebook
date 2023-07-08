@@ -1,5 +1,6 @@
 export const App = () => {
   return (
+    <p>Hello World and let's dance!!</p>
     // <div
     //   style={{
     //     height: '100vh',
