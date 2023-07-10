@@ -1,45 +1,51 @@
 import React, {Component} from 'react';
 import { Form } from './form';
-import { ContactList } from './contactList'
+import { ContactList } from './contactList';
+import { Filter } from './filter';
 import css from './styles.module.css'
 
 
 
-export class App  extends Component {
-  // state = {
-  //   contacts: [],
-  //   name: ''
-  // }
-
+export class App extends Component {
   state = {
     contacts: [
-      // {id: '', name: '', number: ''},
-      // {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      // {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      // {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
     filter: '',
-    name: '',
-    number: ''
-  }
+  };
 
-  formSubmitHandler = data => { 
+  formSubmitHandler = data => {
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, data]
-      }),
-    );
+      contacts: [...prevState.contacts, data],
+    }));
+  };
+
+  searchByName = filter => {
+    this.setState({
+     filter: filter,
+    });
   }
 
   render() {
-  return (
-    <>
-      <div className={css.page}>
-        <Form onSubmit={this.formSubmitHandler} />
+    const normilizedFilter = this.state.filter.toLowerCase();
+    const filtered = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normilizedFilter));
 
-        {((this.state.contacts.length !== 0) &&
-          <ContactList contacts={this.state.contacts} />
-        )}  
-      </div>
-    </>
-  );};
+    return (
+      <>
+        <div className={css.page}>
+          <Form onSubmit={this.formSubmitHandler} />
+
+          {this.state.contacts.length !== 0 && (
+            <>
+              <Filter searchByName={this.searchByName} />
+              <ContactList contacts={filtered} />
+            </>
+          )}
+        </div>
+      </>
+    );
+  }
 };

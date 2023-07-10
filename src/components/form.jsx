@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import { Component } from 'react';
 // import PropTypes from 'prop-types';
 // IoPersonRemove,
 import { IoPulse, IoKeypad } from 'react-icons/io5';
@@ -17,9 +17,6 @@ export class Form extends Component {
     id: nanoid(),
   };
 
-  inputNameId = nanoid();
-  inputNumberId = nanoid();
-
   handleInputChange = event => {
     const { name, value } = event.currentTarget;
     // console.log(event.currentTarget.name, event.currentTarget.value);
@@ -30,6 +27,9 @@ export class Form extends Component {
 
   inputSubmit = event => {
     event.preventDefault();
+    this.setState({
+      id: nanoid(),
+    });
     this.props.onSubmit(this.state);
     this.reset();
   };
@@ -44,7 +44,7 @@ export class Form extends Component {
   render() {
     return (
       <form onSubmit={this.inputSubmit} className={css.formList}>
-        <label className={css.contactName} htmlFor={this.inputNameId}>
+        <label className={css.contactName}>
           <span className={css.icon}>
             <IoPulse />
           </span>
@@ -57,12 +57,11 @@ export class Form extends Component {
             required
             value={this.state.name}
             onChange={this.handleInputChange}
-            id={this.inputNameId}
             autoComplete="off"
           />
         </label>
 
-        <label className={css.contactNumber} htmlFor={this.inputNumberId}>
+        <label className={css.contactNumber}>
           <span className={css.icon}>
             <IoKeypad />
           </span>
@@ -75,13 +74,12 @@ export class Form extends Component {
             required
             value={this.state.number}
             onChange={this.handleInputChange}
-            id={this.inputNumberId}
             autoComplete="off"
           />
         </label>
 
         <button type="submit" className={css.contactButtonAdd}>
-          Add Contact
+          Add new Contact
         </button>
       </form>
     );

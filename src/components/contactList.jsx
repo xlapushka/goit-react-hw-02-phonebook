@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
   //  IoPersonAdd, IoPulse, IoFingerPrintSharp, 
 import {
-  IoPulse,
-  IoPersonRemove, IoKeypad,
+  IoPulse, IoKeypad,
 } from 'react-icons/io5';
+// import { nanoid } from 'nanoid';
 import css from './styles.module.css';
 
 ContactList.propTypes ={
@@ -16,6 +16,8 @@ ContactList.propTypes ={
 
 export function ContactList({contacts}) {
   // console.log(contacts);
+
+  // let id = nanoid();
   
   return (
     <ul className={css.list}>
