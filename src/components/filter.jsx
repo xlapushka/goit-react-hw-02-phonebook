@@ -32,15 +32,9 @@ export class Filter extends Component {
     this.props.searchByName(filter);
   };
 
-  // reset = () => {
-  //   this.setState({
-  //     name: '',
-  //   });
-  // };
 
   render() {
     return (
-      // onChange = { this.handleInputSearchChange }
       <div className={css.filterList}>
         {/* ================ lable не включає input, тому id i htmlFor ====================
          */}

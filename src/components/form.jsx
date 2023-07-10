@@ -1,14 +1,8 @@
 import { Component } from 'react';
-// import PropTypes from 'prop-types';
-// IoPersonRemove,
 import { IoPulse, IoKeypad } from 'react-icons/io5';
 import { nanoid } from 'nanoid';
 import css from './styles.module.css';
 
-// Form.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   number: PropTypes.string.isRequired
-// };
 
 export class Form extends Component {
   state = {
@@ -19,7 +13,6 @@ export class Form extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.currentTarget;
-    // console.log(event.currentTarget.name, event.currentTarget.value);
     this.setState({
       [name]: value,
     });

@@ -1,24 +1,10 @@
-import PropTypes from 'prop-types';
-  //  IoPersonAdd, IoPulse, IoFingerPrintSharp, 
-import {
-  IoPulse, IoKeypad,
-} from 'react-icons/io5';
-// import { nanoid } from 'nanoid';
+
+import { IoPulse, IoKeypad } from 'react-icons/io5';
 import css from './styles.module.css';
 
-ContactList.propTypes ={
-  contacts : PropTypes.arrayOf(PropTypes.shape({
-    id : PropTypes.string.isRequired,
-    name : PropTypes.string.isRequired,
-    number : PropTypes.string.isRequired
-  })).isRequired
-}
 
-export function ContactList({contacts}) {
-  // console.log(contacts);
+export const ContactList = ({contacts , deleteContact}) => {
 
-  // let id = nanoid();
-  
   return (
     <ul className={css.list}>
       {contacts.map(contact => (
@@ -39,11 +25,8 @@ export function ContactList({contacts}) {
             {contact.number}
           </p>
 
-          <button type="button" className={css.contactButtonDelete}>
+          <button type="submit" className={css.contactButtonDelete} onClick={()=> deleteContact(contact.id)}>
             Delete Conact
-            {/* <span className={css.icon}>
-              < IoPersonRemove />
-            </span> */}
           </button>
         </li>
       ))}
