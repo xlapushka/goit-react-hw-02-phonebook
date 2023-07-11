@@ -109,8 +109,14 @@
   padding-bottom: 12px;
 }
 
+.filterUp {
+  display: flex;
+  flex-direction: column-reverse;
+}
 /* .contactButtonSearch {
   margin-left: 12px;
 } */
+
+
 
 

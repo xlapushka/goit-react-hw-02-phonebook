@@ -1,14 +1,15 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IoPulse, IoKeypad } from 'react-icons/io5';
 import { nanoid } from 'nanoid';
-import css from './styles.module.css';
+import css from '../styles.module.css';
 
 
 export class Form extends Component {
   state = {
     name: '',
     number: '',
-    id: nanoid(),
+    filter: ''
   };
 
   handleInputChange = event => {
@@ -21,7 +22,8 @@ export class Form extends Component {
   inputSubmit = event => {
     event.preventDefault();
     this.setState({
-      id: nanoid(),
+      ...this.state, 
+      id : nanoid()
     });
     this.props.onSubmit(this.state);
     this.reset();
@@ -78,3 +80,9 @@ export class Form extends Component {
     );
   }
 } 
+
+Form.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  filter: PropTypes.string,
+};

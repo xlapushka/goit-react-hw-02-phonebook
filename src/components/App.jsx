@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import { Form } from './form';
-import { ContactList } from './contactList';
-import { Filter } from './filter';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Form } from './form/form';
+import { ContactList } from './contactList/contactList';
+import { Filter } from './filter/filter';
 import css from './styles.module.css'
 
 
@@ -50,21 +51,27 @@ export class App extends Component {
     return (
       <>
         <div className={css.page}>
-          <Form
-            onSubmit={this.formSubmitHandler}
-          />
+          <Form onSubmit={this.formSubmitHandler} />
 
           {this.state.contacts.length !== 0 && (
-            <>
-              <Filter searchByName={this.searchByName} />
+            <div className={css.filterUp}>
               <ContactList
-                contacts={filtered}
                 deleteContact={this.deleteContact}
+                contacts={filtered}
               />
-            </>
+              <Filter
+                searchByName={this.searchByName}
+                filter={this.state.filter}
+              />
+            </div>
           )}
         </div>
       </>
     );
   }
+};
+
+App.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object),
+  filter: PropTypes.string,
 };

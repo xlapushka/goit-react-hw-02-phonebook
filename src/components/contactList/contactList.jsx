@@ -1,10 +1,8 @@
-
+import PropTypes from 'prop-types';
 import { IoPulse, IoKeypad } from 'react-icons/io5';
-import css from './styles.module.css';
+import css from '../styles.module.css';
 
-
-export const ContactList = ({contacts , deleteContact}) => {
-
+export const ContactList = ({ deleteContact, contacts }) => {
   return (
     <ul className={css.list}>
       {contacts.map(contact => (
@@ -25,11 +23,20 @@ export const ContactList = ({contacts , deleteContact}) => {
             {contact.number}
           </p>
 
-          <button type="submit" className={css.contactButtonDelete} onClick={()=> deleteContact(contact.id)}>
+          <button
+            type="submit"
+            className={css.contactButtonDelete}
+            onClick={() => deleteContact(contact.id)}
+          >
             Delete Conact
           </button>
         </li>
       ))}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired
 }
+
