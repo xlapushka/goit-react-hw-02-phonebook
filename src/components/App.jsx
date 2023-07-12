@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Form } from './form/form';
 import { ContactList } from './contactList/contactList';
 import { Filter } from './filter/filter';
@@ -26,7 +25,7 @@ export class App extends Component {
         contacts: [...prevState.contacts, data],
       }))
     } else { 
-      alert('This contact is already exists 🤓');
+      alert('This contact is already exists 🤓🤓');
     }
   };
 
@@ -51,7 +50,9 @@ export class App extends Component {
     return (
       <>
         <div className={css.page}>
-          <Form onSubmit={this.formSubmitHandler} />
+          <Form onSubmit={this.formSubmitHandler}
+            name='jkk'
+            state={ this.state} />
 
           {this.state.contacts.length !== 0 && (
             <div className={css.filterUp}>
@@ -71,7 +72,7 @@ export class App extends Component {
   }
 };
 
-App.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
-  filter: PropTypes.string,
-};
+// App.propTypes = {
+//   contacts: PropTypes.arrayOf(PropTypes.object),
+//   filter: PropTypes.string,
+// };

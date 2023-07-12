@@ -55,5 +55,6 @@ export class Filter extends Component {
 }
 
 Filter.propTypes = {
+  searchByName: PropTypes.func.isRequired,
   filter: PropTypes.string,
 };

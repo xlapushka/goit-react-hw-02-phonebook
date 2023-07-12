@@ -4,12 +4,11 @@ import { IoPulse, IoKeypad } from 'react-icons/io5';
 import { nanoid } from 'nanoid';
 import css from '../styles.module.css';
 
-
 export class Form extends Component {
   state = {
     name: '',
     number: '',
-    filter: ''
+    // filter: this.props.state.filter,
   };
 
   handleInputChange = event => {
@@ -21,11 +20,11 @@ export class Form extends Component {
 
   inputSubmit = event => {
     event.preventDefault();
-    this.setState({
-      ...this.state, 
-      id : nanoid()
-    });
-    this.props.onSubmit(this.state);
+    // this.setState({
+    //   ...this.state,
+    //   id: nanoid(),
+    // });
+    this.props.onSubmit({ ...this.state, id: nanoid() });
     this.reset();
   };
 
@@ -37,6 +36,8 @@ export class Form extends Component {
   };
 
   render() {
+    // console.log(this.props.state);
+
     return (
       <form onSubmit={this.inputSubmit} className={css.formList}>
         <label className={css.contactName}>
@@ -79,10 +80,13 @@ export class Form extends Component {
       </form>
     );
   }
-} 
+}
 
 Form.propTypes = {
-  name: PropTypes.string,
-  number: PropTypes.string,
-  filter: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  // name: PropTypes.string,
 };
+
+// Form.defaultProps = {
+//   name: 'Незнакомец',
+// };
